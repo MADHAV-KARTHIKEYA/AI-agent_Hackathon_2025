@@ -1,5 +1,4 @@
 import os
-<<<<<<< HEAD
 from dotenv import load_dotenv
 
 load_dotenv()  # <- Load the .env file
@@ -97,7 +96,6 @@ def update_index():
 
 if __name__ == '__main__':
     app.run(debug=True)
-=======
 import re
 import json
 from typing import List, Dict
@@ -165,5 +163,4 @@ if __name__ == "__main__":
         "text": "What’s our refund policy?",
         "channel": "C1234567890"
     }
-    slack_bot.handle_message(example_event)
->>>>>>> f7cc79ff3105e2fa008b8d41a82d9f768d768fc8
+slack_bot.handle_message(example_event)
