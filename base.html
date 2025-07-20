@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal AI Assistant</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">Internal AI Assistant</h1>
+                <div class="header-info">
+                    <span class="status-indicator"></span>
+                    <span class="status-text">Ready to help</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Chat Area -->
+        <main class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <!-- Welcome Message -->
+                <div class="message assistant-message">
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="message-role">AI Assistant</span>
+                        </div>
+                        <div class="message-text">
+                            <h2>Welcome to your Internal AI Assistant!</h2>
+                            <p>I'm here to help you find information about company policies, processes, and procedures. You can ask me questions like:</p>
+                            <ul>
+                                <li>"What's our refund policy?"</li>
+                                <li>"How do I request design assets?"</li>
+                                <li>"What's the vacation policy?"</li>
+                                <li>"How does the onboarding process work?"</li>
+                            </ul>
+                            <p>Just type your question below and I'll help you find the answer!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-container">
+                <form id="chatForm" class="chat-form">
+                    <div class="input-wrapper">
+                        <textarea 
+                            id="messageInput" 
+                            name="query"
+                            placeholder="Ask me anything about company policies and procedures..."
+                            rows="1"
+                            required
+                        ></textarea>
+                        <button type="submit" id="sendButton" class="send-button">
+                            <span class="send-text">Send</span>
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Input Footer -->
+                <div class="input-footer">
+                    <p>AI Assistant can make mistakes. Please verify important information with HR or your manager.</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Contact IT Support</a>
+                </div>
+                <div class="footer-info">
+                    <span>Internal AI Assistant v1.0</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+        <p>Processing your request...</p>
+    </div>
+
+    <script>
+        // Chat functionality
+        const chatForm = document.getElementById('chatForm');
+        const messageInput = document.getElementById('messageInput');
+        const chatMessages = document.getElementById('chatMessages');
+        const sendButton = document.getElementById('sendButton');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+
+        // Auto-resize textarea
+        messageInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+        });
+
+        // Handle form submission
+        chatForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const query = messageInput.value.trim();
+            if (!query) return;
+
+            // Add user message to chat
+            addMessage(query, 'user');
+            
+            // Clear input and show loading
+            messageInput.value = '';
+            messageInput.style.height = 'auto';
+            showLoading(true);
+            
+            try {
+                // Send request to backend
+                const formData = new FormData();
+                formData.append('query', query);
+                
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    addMessage(data.response, 'assistant');
+                } else {
+                    addMessage('Sorry, I encountered an error processing your request. Please try again.', 'assistant', true);
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('Sorry, I\'m having trouble connecting. Please check your internet connection and try again.', 'assistant', true);
+            } finally {
+                showLoading(false);
+            }
+        });
+
+        // Add message to chat
+        function addMessage(content, role, isError = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}-message${isError ? ' error-message' : ''}`;
+            
+            const timestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            
+            messageDiv.innerHTML = `
+                <div class="message-content">
+                    <div class="message-header">
+                        <span class="message-role">${role === 'user' ? 'You' : 'AI Assistant'}</span>
+                        <span class="message-time">${timestamp}</span>
+                    </div>
+                    <div class="message-text">${formatMessage(content)}</div>
+                </div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Format message content
+        function formatMessage(content) {
+            // Convert line breaks to HTML
+            content = content.replace(/\n/g, '<br>');
+            
+            // Convert bullet points
+            content = content.replace(/^- (.+)$/gm, '<li>$1</li>');
+            content = content.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+            
+            // Convert numbered lists
+            content = content.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+            
+            return content;
+        }
+
+        // Show/hide loading overlay
+        function showLoading(show) {
+            if (show) {
+                loadingOverlay.classList.remove('hidden');
+                sendButton.disabled = true;
+            } else {
+                loadingOverlay.classList.add('hidden');
+                sendButton.disabled = false;
+            }
+        }
+
+        // Handle Enter key (Shift+Enter for new line)
+        messageInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                chatForm.dispatchEvent(new Event('submit'));
+            }
+        });
+
+        // Focus input on page load
+        window.addEventListener('load', function() {
+            messageInput.focus();
+        });
+    </script>
+</body>
+</html>
