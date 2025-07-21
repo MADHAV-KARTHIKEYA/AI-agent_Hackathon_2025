@@ -1,4 +1,8 @@
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 class Config:
     # LLM API Configuration
@@ -11,9 +15,9 @@ class Config:
     SLACK_SIGNING_SECRET = os.getenv('SLACK_SIGNING_SECRET', '')
     
     # Application Configuration
-    DEBUG = bool(int(os.getenv("DEBUG", "1")))
-    HOST = os.getenv("HOST", "127.0.0.1")
-    PORT = int(os.getenv("PORT", "8000"))
+    DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+    HOST = os.getenv('HOST', '0.0.0.0')
+    PORT = int(os.getenv('PORT', 8000))
     
     # Document Configuration
     DOCS_FOLDER = 'docs'
@@ -30,5 +34,3 @@ class Config:
         
         if not cls.SLACK_SIGNING_SECRET:
             print("Warning: SLACK_SIGNING_SECRET not set. Slack integration will be disabled.")
-
-print("LLM_API_KEY:", Config.LLM_API_KEY)  # Add this line for debugging

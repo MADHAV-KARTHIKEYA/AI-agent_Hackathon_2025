@@ -1,7 +1,6 @@
 import requests
 import json
 import logging
-import os
 from typing import Dict, Any
 from config import Config
 from indexer import indexer
@@ -93,10 +92,12 @@ Context from company documents:
             logger.error(f"Unexpected error processing query: {str(e)}")
             return "An unexpected error occurred. Please contact IT support if this continues."
     
-    @staticmethod
-    def validate_api_key() -> bool:
+    def validate_api_key(self) -> bool:
         """Validate that the API key is configured"""
-        return bool(os.getenv("LLM_API_KEY"))
+        if not self.api_key or self.api_key == 'your_openrouter_api_key_here':
+            logger.error("LLM API key not configured properly")
+            return False
+        return True
 
 # Global query processor instance
 query_processor = QueryProcessor()

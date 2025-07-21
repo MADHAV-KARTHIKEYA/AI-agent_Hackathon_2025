@@ -8,18 +8,6 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class DocumentIndexer:
-    documents = {}
-
-    @staticmethod
-    def index_documents():
-        # Dummy document indexing
-        DocumentIndexer.documents = {
-            "doc1": "Company Policy Document",
-            "doc2": "Onboarding Guide",
-            "doc3": "Vacation Policy"
-        }
-        return DocumentIndexer.documents
-
     def __init__(self):
         self.documents = {}
         self.index = {}

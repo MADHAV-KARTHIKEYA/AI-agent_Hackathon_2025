@@ -433,3 +433,373 @@ body {
         animation: none;
     }
 }
+
+/* Google Docs API Styles */
+.docs-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.docs-header {
+    margin-bottom: 1.5rem;
+}
+
+.docs-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.docs-description {
+    font-size: 1rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+}
+
+.docs-content {
+    color: #374151;
+    line-height: 1.7;
+}
+
+.docs-content h2 {
+    color: #111827;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.docs-content p {
+    margin-bottom: 1rem;
+}
+
+.docs-content ul, .docs-content ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.docs-content li {
+    margin-bottom: 0.5rem;
+}
+
+.docs-content code {
+    background: #f3f4f6;
+    padding: 0.125rem 0.25rem;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 0.875rem;
+}
+
+/* Google Docs API Specific Styles */
+.google-docs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.google-docs .section {
+    padding: 1.5rem;
+    background: #f9fafb;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.google-docs .section-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.google-docs .section-content {
+    color: #374151;
+    line-height: 1.6;
+}
+
+.google-docs .section-content h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.google-docs .section-content p {
+    margin-bottom: 1rem;
+}
+
+.google-docs .section-content ul, .google-docs .section-content ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.google-docs .section-content li {
+    margin-bottom: 0.5rem;
+}
+
+.google-docs .section-content code {
+    background: #f3f4f6;
+    padding: 0.125rem 0.25rem;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 0.875rem;
+}
+
+/* Google Docs API Button Styles */
+.docs-button {
+    background: #059669;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.docs-button:hover {
+    background: #047857;
+    transform: translateY(-1px);
+}
+
+.docs-button:disabled {
+    background: #d1d5db;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Google Docs API Loading Styles */
+.docs-loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.docs-loading .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #e5e7eb;
+    border-top: 3px solid #059669;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.docs-loading p {
+    color: #6b7280;
+    font-weight: 500;
+}
+
+/* Google Docs API Error Styles */
+.docs-error {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #dc2626;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+
+.docs-error p {
+    margin: 0;
+}
+
+.docs-error code {
+    background: #f3f4f6;
+    padding: 0.125rem 0.25rem;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 0.875rem;
+}
+
+/* Google Docs API Success Styles */
+.docs-success {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #15803d;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+
+.docs-success p {
+    margin: 0;
+}
+
+.docs-success code {
+    background: #f3f4f6;
+    padding: 0.125rem 0.25rem;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 0.875rem;
+}
+
+/* Google Docs API Table Styles */
+.docs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+.docs-table th, .docs-table td {
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid #e5e7eb;
+}
+
+.docs-table th {
+    background: #f9fafb;
+    font-weight: 500;
+    color: #111827;
+}
+
+.docs-table td {
+    background: #ffffff;
+    color: #374151;
+}
+
+.docs-table tr:hover {
+    background: #f1f5f9;
+}
+
+/* Google Docs API Form Styles */
+.docs-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.docs-form label {
+    font-weight: 500;
+    color: #374151;
+}
+
+.docs-form input, .docs-form select, .docs-form textarea {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #f9fafb;
+    font-size: 1rem;
+    color: #374151;
+    transition: border-color 0.2s ease;
+}
+
+.docs-form input:focus, .docs-form select:focus, .docs-form textarea:focus {
+    border-color: #059669;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+    outline: none;
+}
+
+.docs-form button {
+    background: #059669;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.docs-form button:hover {
+    background: #047857;
+    transform: translateY(-1px);
+}
+
+.docs-form button:disabled {
+    background: #d1d5db;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Google Docs API Miscellaneous Styles */
+.docs-divider {
+    height: 1px;
+    background: #e5e7eb;
+    margin: 2rem 0;
+}
+
+.docs-highlight {
+    background: #f3f4f6;
+    padding: 0.125rem 0.25rem;
+    border-radius: 4px;
+}
+
+.docs-link {
+    color: #059669;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.docs-link:hover {
+    color: #047857;
+}
+
+.docs-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.docs-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background: #111827;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 0.5rem;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.docs-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Google Docs API Print Styles */
+@media print {
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    .header, .footer {
+        display: none;
+    }
+    
+    .chat-container, .docs-container {
+        padding: 0;
+        margin: 0;
+        border: none;
+        box-shadow: none;
+    }
+    
+    .message-content, .docs-content {
+        page-break-inside: avoid;
+    }
+    
+    .docs-table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    .docs-table th, .docs-table td {
+        border: 1px solid #000;
+    }
+    
+    .docs-button, .send-button {
+        display: none;
+    }
+}

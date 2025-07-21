@@ -8,13 +8,7 @@ from typing import Dict
 from config import Config
 from query_processor import query_processor
 from indexer import indexer
-# Ensure slack_integration.py exists in your project directory.
-# If the module is named differently, update the import accordingly.
-try:
-    from slack_integration import slack_integration
-except ImportError:
-    slack_integration = None
-    logging.warning("slack_integration module not found. Slack functionality will be disabled.")
+from slack_integration import slack_integration
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
