@@ -1,0 +1,20 @@
+DESIGN ASSET REQUEST PROCESS
+
+To request design assets, follow these steps:
+
+1. Submit a request through our internal portal: design.company.com
+2. Fill out the design brief with:
+   - Project description
+   - Target audience
+   - Preferred style/brand guidelines
+   - Deadline requirements
+   - File format needed (PNG, SVG, PDF, etc.)
+
+3. Design team will review within 24 hours
+4. First draft delivered within 3-5 business days
+5. Up to 2 rounds of revisions included
+
+Contact: design-team@company.com
+Slack channel: #design-requests
+
+Brand guidelines available at: brand.company.com
